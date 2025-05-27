@@ -1,3 +1,48 @@
 from django.db import models
+from django.utils.text import slugify
 
-# Create your models here.
+class Building(models.Model):
+    name = models.CharField(max_length=100)
+    slug = models.SlugField(unique=True)
+    category = models.CharField(max_length=50)  # e.g., 'hostel'
+    google_maps_url = models.URLField(blank=True)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.name
+
+class Floor(models.Model):
+    building = models.ForeignKey(Building, on_delete=models.CASCADE)
+    number = models.IntegerField()
+    label = models.CharField(max_length=50)  # e.g. "Ground Floor"
+
+    def __str__(self):
+        return f"{self.building.name} - {self.label}"
+
+class Location(models.Model):
+    TYPE_CHOICES = [
+        ("room", "Room"),
+        ("washroom", "Washroom"),
+        ("common_room", "Common Room"),
+        ("water", "Water Cooler"),
+    ]
+
+    name = models.CharField(max_length=100)
+    slug = models.SlugField(unique=True)
+    floor = models.ForeignKey(Floor, on_delete=models.CASCADE)
+    type = models.CharField(max_length=20, choices=TYPE_CHOICES)
+    direction_note = models.TextField()
+    google_maps_url = models.URLField(blank=True, help_text="Optional: Link to this specific place on Google Maps")
+
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(f"{self.floor.building.name}-{self.name}")
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.name

@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>📍 {{ location.name }}</h1>
+
+  <p><strong>Building:</strong> {{ location.floor.building.name }}</p>
+  <p><strong>Floor:</strong> {{ location.floor.label }}</p>
+  <p><strong>Type:</strong> {{ location.get_type_display }}</p>
+
+  <h3>🗺️ Outdoor Directions:</h3>
+  {% if location.floor.building.google_maps_url %}
+    <p>
+      <a href="{{ location.floor.building.google_maps_url }}" target="_blank">
+        Open Google Maps for {{ location.floor.building.name }}
+      </a>
+    </p>
+  {% else %}
+    <p>No Google Maps link available for this building.</p>
+  {% endif %}
+
+  <h3>🏃 Indoor Directions:</h3>
+
+  <p>{{ location.direction_note }}</p>
+<p>You can also use - 🗺️ Google Maps Directions:</p>
+  <h5></h5>
+
+    {% if location.google_maps_url %}
+    <p>
+        <a href="{{ location.google_maps_url }}" target="_blank">
+        📍 View this specific location on Google Maps
+        </a>
+    </p>
+    {% elif location.floor.building.google_maps_url %}
+    <p>
+        <a href="{{ location.floor.building.google_maps_url }}" target="_blank">
+        📍 View {{ location.floor.building.name }} on Google Maps
+        </a>
+    </p>
+    {% else %}
+    <p>No map available for this location.</p>
+    {% endif %}
+
+  <p><a href="{% url 'hostel_place_type' building_slug=location.floor.building.slug place_type=location.type %}">
+    🔙 Back to {{ location.get_type_display }}s
+  </a></p>
+{% endblock %}

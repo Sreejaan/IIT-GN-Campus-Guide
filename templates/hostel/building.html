@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>🏢 {{ building.name }}</h1>
+  <p>Select what you’re looking for in this hostel:</p>
+  <p><a href="{{building.google_maps_url}}">Direction to Hostel</a></p>
+  <ul>
+    {% for type, label in types %}
+      <li>
+        <a href="{% url 'hostel_place_type' building_slug=building.slug place_type=type %}">
+          {{ label }}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+
+  <p><a href="{% url 'hostel_index' %}">🔙 Back to Hostel List</a></p>
+{% endblock %}

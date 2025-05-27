@@ -24,6 +24,8 @@ urlpatterns = [
 
     # Category routes
     path('academic/', include('categories.academic.urls')),
+    path('hostel/', include('categories.hostels.urls')),
+
 #     path('residential/', include('categories.residential.urls')),
 #     path('essentials/', include('categories.essentials.urls')),
 #     path('helpinfo/', include('categories.helpinfo.urls')),

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>{{ building.name }} – {{ place_type|title }}</h1>
+  <ul>
+    {% for location in locations %}
+      <li>
+        <a href="{% url 'hostel_location_detail' building_slug=building.slug place_type=place_type location_slug=location.slug %}">
+          {{ location.name }}
+        </a>
+      </li>
+    {% empty %}
+      <li>No {{ place_type }}s found in this hostel.</li>
+    {% endfor %}
+  </ul>
+
+  <p><a href="{% url 'hostel_building' building_slug=building.slug %}">🔙 Back to {{ building.name }}</a></p>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>🏨 Available Hostels</h1>
+  <ul>
+    {% for hostel in hostels %}
+      <li>
+        <a href="{% url 'hostel_building' building_slug=hostel.slug %}">
+          {{ hostel.name }}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}
