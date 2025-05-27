@@ -21,14 +21,4 @@ urlpatterns = [
     path("admin/", admin.site.urls),
 
      path('', include('core.urls')),  # Homepage
-
-    # Category routes
-    path('academic/', include('categories.academic.urls')),
-    path('hostel/', include('categories.hostels.urls')),
-
-#     path('residential/', include('categories.residential.urls')),
-#     path('essentials/', include('categories.essentials.urls')),
-#     path('helpinfo/', include('categories.helpinfo.urls')),
-#     path('adminservices/', include('categories.adminservices.urls')),
-#     path('facilities/', include('categories.facilities.urls')),
 ]

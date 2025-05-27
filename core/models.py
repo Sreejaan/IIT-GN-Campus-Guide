@@ -46,3 +46,16 @@ class Location(models.Model):
 
     def __str__(self):
         return self.name
+    
+from django.db import models
+
+class CampusCategory(models.Model):
+    title = models.CharField(max_length=100)
+    emoji = models.CharField(max_length=5)
+    description = models.TextField()
+    url_name = models.CharField(max_length=100, blank=True)
+    button_value = models.CharField(max_length=50, default="")
+
+    def __str__(self):
+        return self.title
+
