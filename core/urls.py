@@ -4,8 +4,9 @@ from . import views
 urlpatterns = [
     path('', views.core_index, name='core_index'),
       # Category routes
-    path('academic/', include('categories.academic.urls'), name = "academic"),
-    path('hostel/', include('categories.hostels.urls'), name = 'hostel'),
+    path('academic/', include('categories.academic.urls')),
+    path('hostel/', include('categories.hostels.urls')),
+    path('library/', include('categories.library.urls')),
 
 #     path('residential/', include('categories.residential.urls')),
 #     path('essentials/', include('categories.essentials.urls')),

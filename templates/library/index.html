@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2 class="text-center mb-4">📚 Library Options</h2>
+
+<div class="row row-cols-1 row-cols-md-2 g-4">
+  {% for library in libraries %}
+  <div class="col">
+    <div class="card h-100 shadow-sm text-center">
+      <div class="card-body">
+        <h5 class="card-title">{{ library.name }}</h5>
+        {% if library.name == 'Central Library'%}
+            <p class="card-text">Academic Area Library <br>(Library near the academic block)</p>
+        {% else %}
+            <p class="card-text">Hostel Side Library <br>(Library located near the hostels)</p>
+        {% endif %}
+        <a href="{% url 'library_building' building_slug=library.slug %}" class="btn btn-primary">
+          Visit {{ library.name }}
+        </a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+  <a href="{% url 'core_index' %}">Back to Home</a>
+</div>
+
+{% endblock %}

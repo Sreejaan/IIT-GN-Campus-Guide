@@ -10,7 +10,7 @@
       <div class="card-body text-center">
         <h5 class="card-title">{{ cat.emoji }} {{ cat.title }}</h5>
         <p class="card-text">{{ cat.description }}</p>
-        {% if cat.title == "Hostels" %}
+        {% if cat.title == "Library" %}
           <a href="{% url cat.url_name %}" class="btn btn-primary">{{ cat.button_value }}</a>
         {% else %}
           <a href="#" class="btn btn-primary">{{ cat.button_value }}</a>  <!-- Default link -->

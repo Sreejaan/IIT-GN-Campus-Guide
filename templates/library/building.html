@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 class="mb-3 text-center">📖 {{ building.name }}</h2>
+
+{% if building.google_maps_url %}
+  <div class="mb-4 text-center">
+    <a href="{{ building.google_maps_url }}" target="_blank" class="btn btn-outline-primary">
+      🗺️ Get Google Maps Directions
+    </a>
+  </div>
+{% endif %}
+
+<h4>📌 Indoor Info:</h4>
+
+<ul class="list-group mb-4">
+  {% for location in locations %}
+    <li class="list-group-item">
+      <strong>{{ location.name }}</strong><br>
+      {{ location.direction_note }}
+    </li>
+  {% empty %}
+    <li class="list-group-item">No specific indoor locations listed yet.</li>
+  {% endfor %}
+</ul>
+
+<div class="text-end mb-3">
+  <a href="{% url 'core_index' %}" class="btn btn-outline-secondary">← Back to Home</a>
+</div>
+{% endblock %}

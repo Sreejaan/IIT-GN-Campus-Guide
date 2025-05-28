@@ -59,3 +59,33 @@ class CampusCategory(models.Model):
     def __str__(self):
         return self.title
 
+from django.db import models
+from django.utils.text import slugify
+
+class Shop(models.Model):
+    SHOP_TYPES = [
+        ("stationery", "Stationery"),
+        ("food", "Food & Snacks"),
+        ("printing", "Printing"),
+        ("general", "General Store"),
+        ("others", "Others"),
+        ("mess", "Mess"),
+    ]
+
+    name = models.CharField(max_length=100)
+    slug = models.SlugField(blank=True, unique=True)
+    type = models.CharField(max_length=20, choices=SHOP_TYPES, default="others")
+    description = models.TextField(blank=True)
+    owner = models.CharField(max_length=100, blank=True)
+    mobile_number = models.CharField(max_length=20, blank=True)
+    opening_hours = models.CharField(max_length=100, blank=True, help_text="e.g. 9AM - 7PM")
+    location_note = models.TextField(blank=True, help_text="E.g. Near Hostel B main gate")
+    google_maps_url = models.URLField(blank=True)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f"{self.name} ({self.get_type_display()})"
