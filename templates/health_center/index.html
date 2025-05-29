@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container my-4">
+  {% if center %}
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h2 class="card-title text-center mb-4">{{ center.name }}</h2>
+
+        {% if center.google_maps_url %}
+          <div class="text-center mb-4">
+            <a href="{{ center.google_maps_url }}" target="_blank" class="btn btn-outline-primary">
+              🗺️ View on Google Maps
+            </a>
+          </div>
+        {% endif %}
+
+        {% if center.description %}
+          <div class="mb-3">
+            <h5 class="text-muted">📄 Description</h5>
+            <p>{{ center.description }}</p>
+          </div>
+        {% endif %}
+
+        {% if center.location_note %}
+          <div class="mb-3">
+            <h5 class="text-muted">📍 Location</h5>
+            <p>{{ center.location_note }}</p>
+          </div>
+        {% endif %}
+
+        {% if center.opening_hours %}
+          <div class="mb-3">
+            <h5 class="text-muted">🕒 Opening Hours</h5>
+            <p>{{ center.opening_hours }}</p>
+          </div>
+        {% endif %}
+
+        {% if center.mobile_number %}
+          <div class="mb-3">
+            <h5 class="text-muted">📞 Contact</h5>
+            <p>{{ center.mobile_number }}</p>
+          </div>
+        {% endif %}
+
+        {% if center.more_info_url %}
+          <div class="text-center mt-3">
+            <a href="{{ center.more_info_url }}" target="_blank" class="btn btn-outline-info">
+              🔗 More Info & Booking
+            </a>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  {% else %}
+    <p>No Health Center information found.</p>
+  {% endif %}
+</div>
+{% endblock %}

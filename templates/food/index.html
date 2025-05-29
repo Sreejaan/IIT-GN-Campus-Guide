@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2 class="text-center mb-4">🍽️ Food & Mess Options</h2>
+
+<!-- MESS FOOD SECTION -->
+<h4 class="mb-3">🍛 Mess Facilities</h4>
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mb-5">
+  {% for mess_food in mess %}
+    <div class="col">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">{{ mess_food.name }}</h5>
+          <p class="card-text">{{ mess_food.location_note }}</p>
+          <a href="{% url 'food_shop' food_slug=mess_food.slug %}" class="btn btn-outline-primary">
+            View Details →
+          </a>
+        </div>
+      </div>
+    </div>
+  {% empty %}
+    <p class="text-muted">No mess options available yet.</p>
+  {% endfor %}
+</div>
+
+<!-- CANTEEN SECTION -->
+<h4 class="mb-3">🥪 Canteens & Food Counters</h4>
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+  {% for cant in canteen %}
+    <div class="col">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">{{ cant.name }}</h5>
+          <p class="card-text">{{ cant.location_note }}</p>
+          <a href="{% url 'food_shop' food_slug=cant.slug %}" class="btn btn-outline-success">
+            View Details →
+          </a>
+        </div>
+      </div>
+    </div>
+  {% empty %}
+    <p class="text-muted">No canteens added yet.</p>
+  {% endfor %}
+</div>
+
+{% endblock %}

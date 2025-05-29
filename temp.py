@@ -3,65 +3,63 @@ import django
 from django.utils.text import slugify
 
 # Set up Django environment
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'CampusGuide.settings')  # Replace with your project's settings module
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'CampusGuide.settings')  # Replace with your settings module
 django.setup()
 
-from core.models import Shop  # Replace with your app's name
+from core.models import Facility  # Replace with your actual app name if different
 
-# List of shops to be added
-shops_data =[
-     {
-        "name": "Jaiswal Mess",
-        "type": "mess",
-        "description": "Ground Floor - Serves nutritious and hygienic food, including options for Jain meals, to the hostel community. The menu is curated monthly by the student mess council.",
-        "owner": "",
-        "mobile_number": "",
-        "opening_hours": "7:30 AM - 9:30 AM, 12:15 PM - 2:15 PM, 4:30 PM - 6:00 PM ,7:30 PM - 9:30 PM",
-        "location_note": "Located near Aibaan Hostel.",
-        "google_maps_url": "https://www.google.com/maps/dir//23.2108067,72.683742/@23.2108802,72.6425422,13736m/data=!3m1!1e3?entry=ttu&g_ep=EgoyMDI1MDUyNi4wIKXMDSoASAFQAw%3D%3D"
+# List of parking areas to be added
+parking_data = [
+    {
+        "name": "Academic Block Parking",
+        "description": "Open parking near the academic buildings. Used by faculty, staff, and students.",
+        "location_note": "Near Academic Block main entrance.",
+        "google_maps_url": "https://maps.google.com/?q=23.2151015,72.6822127",
     },
     {
-        "name": "Mohani Mess",
-        "type": "mess",
-        "description": "First Floor - Serves nutritious and hygienic food, including options for Jain meals, to the hostel community. The menu is curated monthly by the student mess council.",
-        "owner": "",
-        "mobile_number": "",
-        "opening_hours": "7:30 AM - 9:30 AM, 12:15 PM - 2:15 PM, 4:30 PM - 6:00 PM ,7:30 PM - 9:30 PM",
-        "location_note": "Located near Aibaan Hostel.",
-        "google_maps_url": "https://www.google.com/maps/dir//23.2108067,72.683742/@23.2108802,72.6425422,13736m/data=!3m1!1e3?entry=ttu&g_ep=EgoyMDI1MDUyNi4wIKXMDSoASAFQAw%3D%3D"
+        "name": "Aibaan Hostel Parking",
+        "description": "Designated parking for residents of Aibaan Hostel. Mainly used for two-wheelers.",
+        "location_note": "Outside Aibaan Hostel main gate.",
+        "google_maps_url": "https://maps.google.com/?q=23.2108546,72.6837397",
     },
     {
-        "name": "RGouras Mess",
-        "type": "mess",
-        "description": "First Floor - Serves nutritious and hygienic food, including options for Jain meals, to the hostel community. The menu is curated monthly by the student mess council.",
-        "owner": "",
-        "mobile_number": "",
-        "opening_hours": "7:30 AM - 9:30 AM, 12:15 PM - 2:15 PM, 4:30 PM - 6:00 PM ,7:30 PM - 9:30 PM",
-        "location_note": "Located near Duven Hostel.",
-        "google_maps_url": "https://www.google.com/maps/dir//23.2108202,72.6855757/@23.2108937,72.6443759,13736m/data=!3m1!1e3?entry=ttu&g_ep=EgoyMDI1MDUyNi4wIKXMDSoASAFQAw%3D%3D"
+        "name": "Duven Hostel Parking",
+        "description": "Two-wheeler parking area for Duven Hostel residents.",
+        "location_note": "Beside Duven Hostel side entrance.",
+        "google_maps_url": "https://maps.google.com/?q=23.2109455,72.6856043",
+    },
+    {
+        "name": "Parking Near Sports Complex",
+        "description": "Spacious parking lot near the sports complex. Often used during sports events.",
+        "location_note": "Behind the sports complex building.",
+        "google_maps_url": "https://maps.google.com/?q=23.2123451,72.6842102",
+    },
+    {
+        "name": "Main Gate Parking",
+        "description": "Primary parking space near the main entrance. Open for visitors and deliveries.",
+        "location_note": "Just inside the main entrance gate.",
+        "google_maps_url": "https://maps.google.com/?q=23.2134567,72.6812345",
     },
 ]
-# Function to populate the Shop model
-def populate_shops():
-    for shop in shops_data:
-        slug = slugify(shop["name"])
-        shop_instance, created = Shop.objects.get_or_create(
-            name=shop["name"],
+
+# Populate Facility model with parking data
+def populate_parking_facilities():
+    for facility in parking_data:
+        slug = slugify(facility["name"])
+        obj, created = Facility.objects.get_or_create(
+            name=facility["name"],
+            type="parking",
             defaults={
                 "slug": slug,
-                "type": shop["type"],
-                "description": shop["description"],
-                "owner": shop["owner"],
-                "mobile_number": shop["mobile_number"],
-                "opening_hours": shop["opening_hours"],
-                "location_note": shop["location_note"],
-                "google_maps_url": shop["google_maps_url"],
+                "description": facility["description"],
+                "location_note": facility["location_note"],
+                "google_maps_url": facility["google_maps_url"],
             }
         )
         if created:
-            print(f"Added: {shop['name']}")
+            print(f"✅ Added: {facility['name']}")
         else:
-            print(f"Already exists: {shop['name']}")
+            print(f"ℹ️ Already exists: {facility['name']}")
 
 if __name__ == "__main__":
-    populate_shops()
+    populate_parking_facilities()

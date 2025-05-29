@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container my-4">
+
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <h2 class="card-title text-center mb-4">{{ shop.name }}</h2>
+
+      {% if shop.google_maps_url %}
+        <div class="text-center mb-4">
+          <a href="{{ shop.google_maps_url }}" target="_blank" class="btn btn-outline-primary">
+            🗺️ View on Google Maps
+          </a>
+        </div>
+      {% endif %}
+
+      <!-- Description -->
+      {% if shop.description %}
+        <div class="mb-3">
+          <h5 class="text-muted">🛍️ Description</h5>
+          <p>{{ shop.description }}</p>
+        </div>
+      {% endif %}
+
+      <!-- Type -->
+      <div class="mb-3">
+        <h5 class="text-muted">🏷️ Type</h5>
+        <p>{{ shop.get_type_display }}</p>
+      </div>
+
+      <!-- Location Note -->
+      {% if shop.location_note %}
+        <div class="mb-3">
+          <h5 class="text-muted">📍 Location</h5>
+          <p>{{ shop.location_note }}</p>
+        </div>
+      {% endif %}
+
+      <!-- Opening Hours -->
+      {% if shop.opening_hours %}
+        <div class="mb-3">
+          <h5 class="text-muted">🕒 Opening Hours</h5>
+          <p>{{ shop.opening_hours }}</p>
+        </div>
+      {% endif %}
+
+      <!-- Owner -->
+      {% if shop.owner %}
+        <div class="mb-3">
+          <h5 class="text-muted">👤 Shop Owner</h5>
+          <p>{{ shop.owner }}</p>
+        </div>
+      {% endif %}
+
+      <!-- Mobile Number -->
+      {% if shop.mobile_number %}
+        <div class="mb-3">
+          <h5 class="text-muted">📞 Contact</h5>
+          <p>{{ shop.mobile_number }}</p>
+        </div>
+      {% endif %}
+
+      <!-- Back Button -->
+      <div class="text-center mt-4">
+        <a href="{% url 'shop_index' %}" class="btn btn-secondary">← Back to Shops</a>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+{% endblock %}

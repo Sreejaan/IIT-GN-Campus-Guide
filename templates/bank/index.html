@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container my-4">
+
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <h2 class="card-title text-center mb-4">{{ bank.name }}</h2>
+
+      {% if bank.google_maps_url %}
+        <div class="text-center mb-4">
+          <a href="{{ bank.google_maps_url }}" target="_blank" class="btn btn-outline-primary">
+            🗺️ View on Google Maps
+          </a>
+        </div>
+      {% endif %}
+
+      <!-- Description -->
+      {% if bank.description %}
+        <div class="mb-3">
+          <h5 class="text-muted">📄 Description</h5>
+          <p>{{ bank.description }}</p>
+        </div>
+      {% endif %}
+
+      <!-- Location Note -->
+      {% if bank.location_note %}
+        <div class="mb-3">
+          <h5 class="text-muted">📍 Location</h5>
+          <p>{{ bank.location_note }}</p>
+        </div>
+      {% endif %}
+
+      <!-- Opening Hours -->
+      {% if bank.opening_hours %}
+        <div class="mb-3">
+          <h5 class="text-muted">🕒 Opening Hours</h5>
+          <p>{{ bank.opening_hours }}</p>
+        </div>
+      {% endif %}
+
+      <!-- Contact / Mobile Number -->
+      {% if bank.mobile_number %}
+        <div class="mb-3">
+          <h5 class="text-muted">📞 Contact</h5>
+          <p>{{ bank.mobile_number }}</p>
+        </div>
+      {% endif %}
+
+      <!-- Bank-specific details -->
+
+      {% if bank.ifsc_code %}
+        <div class="mb-3">
+          <h5 class="text-muted">🏦 IFSC Code</h5>
+          <p>{{ bank.ifsc_code }}</p>
+        </div>
+      {% endif %}
+
+      {% if bank.branch_code %}
+        <div class="mb-3">
+          <h5 class="text-muted">🏦 Branch Code</h5>
+          <p>{{ bank.branch_code }}</p>
+        </div>
+      {% endif %}
+
+      <div class="mb-3">
+        <h5 class="text-muted">🏧 ATM Available</h5>
+        <p>{% if bank.atm_available %}Yes{% else %}No{% endif %}</p>
+      </div>
+
+      <!-- More Info URL -->
+      {% if bank.more_info_url %}
+        <div class="text-center mt-4">
+          <a href="{{ bank.more_info_url }}" target="_blank" class="btn btn-outline-secondary">
+            ℹ️ More Information
+          </a>
+        </div>
+      {% endif %}
+
+      <!-- Back Button -->
+      <div class="text-center mt-4">
+        <a href="{% url 'core_index' %}" class="btn btn-secondary">← Back to Facilities</a>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+{% endblock %}
