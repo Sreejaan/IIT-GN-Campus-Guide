@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2 class="text-center mb-4 text-info">🎭 Auditorium and OAT Facilities</h2>
+
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+  {% for auditorium in auditoriums %}
+    <div class="col">
+      <div class="card h-100 shadow-sm border border-info">
+        <div class="card-body">
+          <h5 class="card-title text-info">{{ auditorium.name }}</h5>
+          <p class="card-text text-muted">{{ auditorium.location_note|default:"No location note provided." }}</p>
+          <a href="{% url 'auditorium_detail' auditorium_slug=auditorium.slug %}" class="btn btn-outline-info">
+            View Details →
+          </a>
+        </div>
+      </div>
+    </div>
+  {% empty %}
+    <p class="text-muted text-center">🚫 No auditorium facilities added yet.</p>
+  {% endfor %}
+</div>
+{% endblock %}

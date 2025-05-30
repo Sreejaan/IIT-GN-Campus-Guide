@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container my-4">
+
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <h2 class="card-title text-center mb-4 text-info">{{ auditorium.name }}</h2>
+
+      {% if auditorium.google_maps_url %}
+        <div class="text-center mb-4">
+          <a href="{{ auditorium.google_maps_url }}" target="_blank" class="btn btn-outline-info">
+            🗺️ View on Google Maps
+          </a>
+        </div>
+      {% endif %}
+
+      <!-- Description -->
+      {% if auditorium.description %}
+        <div class="mb-3">
+          <h5 class="text-muted">📝 Description</h5>
+          <p>{{ auditorium.description }}</p>
+        </div>
+      {% endif %}
+
+      <!-- Opening Hours -->
+      {% if auditorium.opening_hours %}
+        <div class="mb-3">
+          <h5 class="text-muted">🕒 Opening Hours</h5>
+          <p>{{ auditorium.opening_hours }}</p>
+        </div>
+      {% endif %}
+
+      <!-- Location Note -->
+      {% if auditorium.location_note %}
+        <div class="mb-3">
+          <h5 class="text-muted">📍 Location</h5>
+          <p>{{ auditorium.location_note }}</p>
+        </div>
+      {% endif %}
+
+      <!-- Capacity -->
+      {% if auditorium.capacity %}
+        <div class="mb-3">
+          <h5 class="text-muted">👥 Capacity</h5>
+          <p>{{ auditorium.capacity }}</p>
+        </div>
+      {% endif %}
+
+      <!-- More Info URL -->
+      {% if auditorium.more_info_url %}
+        <div class="mb-3">
+          <a href="{{ auditorium.more_info_url }}" target="_blank" class="btn btn-outline-info">
+            View More Info
+          </a>
+        </div>
+      {% endif %}
+
+      <!-- Back Button -->
+      <div class="text-center mt-4">
+        <a href="{% url 'auditorium_index' %}" class="btn btn-secondary">← Back to Auditoriums</a>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+{% endblock %}

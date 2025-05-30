@@ -10,7 +10,7 @@
         <div class="card-body">
           <h5 class="card-title text-primary">{{ parking.name }}</h5>
           <p class="card-text text-muted">{{ parking.location_note|default:"No location note provided." }}</p>
-          <a href="{% url 'parking_detail' parking_slug=parking.slug %}" class="btn btn-info text-white">
+          <a href="{% url 'parking_detail' parking_slug=parking.slug %}" class="btn btn-outline-info">
             View Details →
           </a>
         </div>

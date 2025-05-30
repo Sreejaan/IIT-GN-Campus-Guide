@@ -12,7 +12,7 @@ urlpatterns = [
     path('health/', include('categories.health_center.urls')),
     path('bank/', include('categories.bankATM.urls')),
     path('parking/', include('categories.parking_area.urls')),
-    
+    path('auditorium/', include('categories.auditorium.urls')),
 
 #     path('residential/', include('categories.residential.urls')),
 #     path('essentials/', include('categories.essentials.urls')),
