@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2 class="text-center mb-4 text-info">🏅 Sports & Services</h2>
+
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+  {% for sport in sports %}
+    <div class="col">
+      <div class="card h-100 shadow-sm border border-info">
+        <div class="card-body">
+          <h5 class="card-title text-info">{{ sport.name }}</h5>
+          <p class="card-text text-muted">{{ sport.location_note|default:"No location note provided."|truncatewords:7 }}</p>
+          <a href="{% url 'sport_detail' sport_slug=sport.slug %}" class="btn btn-outline-info">
+            View Details →
+          </a>
+        </div>
+      </div>
+    </div>
+  {% empty %}
+    <p class="text-muted text-center">🚫 No sports added yet.</p>
+  {% endfor %}
+</div>
+{% endblock %}

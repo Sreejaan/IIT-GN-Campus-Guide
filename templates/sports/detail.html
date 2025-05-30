@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container my-4">
+
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <h2 class="card-title text-center mb-4 text-info">{{ sport.name }}</h2>
+
+      {% if sport.google_maps_url %}
+        <div class="text-center mb-4">
+          <a href="{{ sport.google_maps_url }}" target="_blank" class="btn btn-outline-info">
+            🗺️ View on Google Maps
+          </a>
+        </div>
+      {% endif %}
+
+      {% if sport.description %}
+        <div class="mb-3">
+          <h5 class="text-muted">🏅 Description</h5>
+          <p>{{ sport.description}}</p>
+        </div>
+      {% endif %}
+
+      <div class="mb-3">
+        <h5 class="text-muted">🏷️ Type</h5>
+        <p>{{ sport.get_type_display }}</p>
+      </div>
+
+      {% if sport.location_note %}
+        <div class="mb-3">
+          <h5 class="text-muted">📍 Location</h5>
+          <p>{{ sport.location_note}}</p>
+        </div>
+      {% endif %}
+
+      {% if sport.opening_hours %}
+        <div class="mb-3">
+          <h5 class="text-muted">🕒 Opening Hours</h5>
+          <p>{{ sport.opening_hours }}</p>
+        </div>
+      {% endif %}
+
+      {% if sport.owner %}
+        <div class="mb-3">
+          <h5 class="text-muted">👤 Sport Owner</h5>
+          <p>{{ sport.owner }}</p>
+        </div>
+      {% endif %}
+
+      {% if sport.mobile_number %}
+        <div class="mb-3">
+          <h5 class="text-muted">📞 Contact</h5>
+          <p>{{ sport.mobile_number }}</p>
+        </div>
+      {% endif %}
+
+      {% if sport.capacity %}
+        <div class="mb-3">
+          <h5 class="text-muted">👥 Capacity</h5>
+          <p>{{ sport.capacity }}</p>
+        </div>
+      {% endif %}
+
+    {% if sport.more_info_url %}
+        <div class="text-center mt-4">
+            <a href="{{ sport.more_info_url }}" target="_blank" class="btn btn-outline-secondary">
+            ℹ️ More Information
+            </a>
+        </div>
+    {% endif %}
+
+
+      <div class="text-center mt-4">
+        <a href="{% url 'sports_index' %}" class="btn btn-secondary">← Back to Sports</a>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+{% endblock %}

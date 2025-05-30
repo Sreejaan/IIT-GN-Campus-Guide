@@ -13,6 +13,7 @@ urlpatterns = [
     path('bank/', include('categories.bankATM.urls')),
     path('parking/', include('categories.parking_area.urls')),
     path('auditorium/', include('categories.auditorium.urls')),
+    path('sports/', include('categories.sports.urls'))
 
 #     path('residential/', include('categories.residential.urls')),
 #     path('essentials/', include('categories.essentials.urls')),
