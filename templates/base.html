@@ -13,6 +13,28 @@
             padding-top: 2rem;
             padding-bottom: 2rem;
         }
+        /* Dark mode styles */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #121212;
+                color: #e0e0e0;
+            }
+            hr {
+                border-color: #444;
+            }
+            /* You can override Bootstrap colors here if needed */
+            h1, h2, h3, h4, h5, h6 {
+                color: #ddd;
+            }
+            a.btn-outline-secondary {
+                color: #ccc;
+                border-color: #666;
+            }
+            a.btn-outline-secondary:hover {
+                background-color: #444;
+                color: white;
+            }
+        }
     </style>
 </head>
 <body>
