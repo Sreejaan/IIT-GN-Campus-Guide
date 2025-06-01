@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    
+    <h2>{{ department.name }} Department</h2>
+
+    {% if roles %}
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            {% for role in roles %}
+                <div class="col">
+                    <a href="{% url 'faculty_detail' role.person.slug %}" class="card text-decoration-none text-dark h-100">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">{{ role.person.name }}</h5>
+                            <p class="card-text">{{ role.designation.title }}</p>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No faculty or staff found for this department.</p>
+    {% endif %}
+
+    <a href="{% url 'faculty_index' %}" class="btn btn-link mb-3">&larr; Back to Faculty Index</a>
+{% endblock %}

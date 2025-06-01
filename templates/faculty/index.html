@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="mb-4 text-center">Faculty Section</h1>
+
+<div class="row mb-5">
+  <div class="col-md-4">
+    <!-- Directors and Deans combined -->
+    <div class="d-flex flex-column gap-3">
+      {% for role in directors %}
+        <a href="{% url 'faculty_detail' role.person.slug %}" class="text-decoration-none text-dark">
+          <div class="card shadow-sm">
+            <div class="card-body text-center">
+              <h5 class="card-title mb-1">{{ role.person.name }}</h5>
+              <p class="card-text text-muted">{{ role.designation.title }}</p>
+            </div>
+          </div>
+        </a>
+      {% empty %}
+        <p>No directors found.</p>
+      {% endfor %}
+
+      {% comment %} {% for role in deans %}
+        <a href="{% url 'person_detail' role.person.slug %}" class="text-decoration-none text-dark">
+          <div class="card shadow-sm">
+            <div class="card-body text-center">
+              <h5 class="card-title mb-1">{{ role.person.name }}</h5>
+              <p class="card-text text-muted">{{ role.designation.title }}</p>
+            </div>
+          </div>
+        </a>
+      {% empty %}
+        <p>No deans found.</p>
+      {% endfor %} {% endcomment %}
+    </div>
+  </div>
+  <div class="col-md-8">
+    <!-- Departments -->
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+      {% for department in departments %}
+        <div class="col">
+          <a href="{% url 'department_detail' department.code %}" class="text-decoration-none text-dark">
+            <div class="card h-100 shadow-sm">
+              <div class="card-body text-center">
+                <h5 class="card-title">{{ department.code|upper }}</h5>
+                <p class="card-text text-muted">{{ department.name }}</p>
+              </div>
+            </div>
+          </a>
+        </div>
+      {% empty %}
+        <p>No departments found.</p>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}

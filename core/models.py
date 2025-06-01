@@ -136,3 +136,125 @@ class Facility(models.Model):
     def __str__(self):
         return f"{self.name} ({self.get_type_display()})"
 
+
+
+# Facility Model and data
+
+from django.db import models
+from django.utils.text import slugify
+
+# ---- Departments ----
+TYPE_CHOICES = [
+    ('cse', 'Computer Science and Engineering'),
+    ('electrical', 'Electrical Engineering'),
+    ('civil', 'Civil Engineering'),
+    ('mechanical', 'Mechanical Engineering'),
+    ('chemical', 'Chemical Engineering'),
+    ('materials', 'Materials Engineering'),
+    ('biosciences', 'Biological Sciences and Bioengineering'),
+    ('maths', 'Mathematics'),
+    ('physics', 'Physics'),
+    ('chemistry', 'Chemistry'),
+    ('humanities', 'Humanities and Social Sciences'),
+    ('earth', 'Earth Sciences'),
+    ('cognitive', 'Cognitive and Brain Sciences'),
+    ('design', 'Design'),
+    ('other', 'Staff/Other'),
+]
+
+DESIGNATION_CHOICES = [
+    ('professor', 'Professor'),
+    ('associate_professor', 'Associate Professor'),
+    ('assistant_professor', 'Assistant Professor'),
+    ('visiting_faculty', 'Visiting Faculty'),
+    ('adjunct_professor', 'Adjunct Professor'),
+    ('emeritus_professor', 'Emeritus Professor'),
+    ('postdoc', 'Postdoctoral Fellow'),
+    ('research_staff', 'Research Staff'),
+    ('teaching_assistant', 'Teaching Assistant'),
+    ('admin_staff', 'Administrative Staff'),
+    ('director', 'Director'),
+    ('dean', 'Dean'),
+    ('hod', 'Head of Department'),
+    ('warden', 'Warden'),
+    ('other', 'Other'),
+]
+
+
+class Department(models.Model):
+    code = models.CharField(max_length=50, choices=TYPE_CHOICES, unique=True)
+    name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
+
+
+class Designation(models.Model):
+    code = models.CharField(max_length=50, choices=DESIGNATION_CHOICES, unique=True)
+    title = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.title
+
+
+class Person(models.Model):
+    name = models.CharField(max_length=255)
+    slug = models.SlugField(unique=True, blank=True)
+    phone_number = models.CharField(max_length=50, blank=True, null=True)
+    personal_website = models.URLField(blank=True, null=True)
+    bio = models.TextField(blank=True, null=True)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.name
+
+
+class Role(models.Model):
+    person = models.ForeignKey(Person, on_delete=models.CASCADE, related_name='roles')
+    department = models.ForeignKey(Department, on_delete=models.SET_NULL, null=True, blank=True)
+    designation = models.ForeignKey(Designation, on_delete=models.SET_NULL, null=True, blank=True)
+
+    office_location = models.CharField(max_length=255, blank=True, null=True)
+    accessibility_info = models.CharField(max_length=255, blank=True, null=True)
+    office_notes = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        person_name = self.person.name if self.person else "Unknown Person"
+        designation_title = self.designation.title if self.designation else "No Designation"
+        department_name = self.department.name if self.department else "No Department"
+        return f"{person_name} - {designation_title} ({department_name})"
+    
+
+class MapStep(models.Model):
+    person = models.ForeignKey(Person, on_delete=models.CASCADE, related_name='map_steps')
+    step_number = models.PositiveIntegerField()
+    map_embed_url = models.URLField()
+    description = models.TextField(blank=True)
+
+    class Meta:
+        ordering = ['step_number']
+
+    def __str__(self):
+        return f"{self.person.name} - Step {self.step_number}"
+    
+class WaterAndWashroom(models.Model):
+    FACILITY_TYPES = [
+        ('washroom', 'Washroom'),
+        ('water_point', 'Water Point'),
+        ('both', 'Both'),
+    ]
+
+    name = models.CharField(max_length=100)
+    facility_type = models.CharField(max_length=20, choices=FACILITY_TYPES)
+    google_maps_url = models.URLField()
+    location_note = models.TextField(blank=True)
+    building = models.CharField(max_length=50, blank=True)
+    floor = models.IntegerField(null=True, blank=True)
+    accessibility = models.TextField(blank=True)
+
+    def __str__(self):
+        return f"{self.name} ({self.facility_type})"

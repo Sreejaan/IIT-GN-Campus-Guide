@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card shadow-sm p-4 mb-4">
+    <h2 class="mb-3">{{ person.name }}</h2>
+
+    <div class="mb-3">
+        <ul class="list-group list-group-flush">
+            {% for role in roles %}
+                    <strong>{{ role.designation.title }}</strong>
+                <li class="list-group-item">
+                    {% if role.department and role.department.name != "Other" %}
+
+                        — Department: {{ role.department.name }}
+                        <br>
+                    {% endif %}
+                    {% if role.office_location %}
+                        — Office: {{ role.office_location }}
+                        <br>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    {% if person.phone_number %}
+        <p><strong>Phone:</strong> {{ person.phone_number }}</p>
+    {% endif %}
+
+    {% if person.personal_website %}
+        
+            <a href="{{ person.personal_website }}" target="_blank">
+                Website
+            </a>
+        </p>
+    {% endif %}
+
+    {% if person.bio %}
+        <div class="mt-4">
+            <h5>Biography</h5>
+            <p class="text-muted" style="white-space: pre-wrap;">{{ person.bio }}</p>
+        </div>
+    {% endif %}
+</div>
+
+<div class="card shadow-sm p-4">
+    <h4 class="mb-3">🗺️ Office Navigation</h4>
+    {% if map_steps %}
+        <ul class="ps-3">
+            {% for step in map_steps %}
+                <li class="mb-3">
+                    <p><a href="{{step.map_embed_url}}"><strong>Step {{ step.step_number}}:</strong> </a> {{ step.description }}</p>
+                    
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="text-muted">No map directions available for this faculty member.</p>
+    {% endif %}
+</div>
+
+<div class="mt-4">
+    <a href="{% url 'faculty_index' %}" class="btn btn-outline-primary">&larr; Back to Faculty Index</a>
+</div>
+{% endblock %}
