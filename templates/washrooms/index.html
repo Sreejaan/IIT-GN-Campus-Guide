@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2 class="mb-4">🚻 Washroom Locations</h2>
+
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        {% for washroom in washrooms %}
+        <div class="col">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h5 class="card-title">{{ washroom.name }}</h5>
+                    <p class="card-text">{{ washroom.location_note }}</p>
+                    <p class="card-text"><strong>Type:</strong> {{ washroom.get_facility_type_display }}</p>
+                    <a href="{{ washroom.google_maps_url }}" class="btn btn-primary" target="_blank">
+                        View on Google Maps
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock content %}

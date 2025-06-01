@@ -15,6 +15,8 @@ urlpatterns = [
     path('auditorium/', include('categories.auditorium.urls')),
     path('sports/', include('categories.sports.urls')),
     path('faculty/', include('categories.faculty_office.urls')),
+    path('washroom/', include('categories.washrooms.urls')),
+    path('water', include('categories.water_points.urls')),
 #     path('residential/', include('categories.residential.urls')),
 #     path('essentials/', include('categories.essentials.urls')),
 #     path('helpinfo/', include('categories.helpinfo.urls')),
