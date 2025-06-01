@@ -5,18 +5,16 @@
     <h2 class="mb-3">{{ person.name }}</h2>
 
     <div class="mb-3">
+        <h5>Roles & Departments</h5>
         <ul class="list-group list-group-flush">
             {% for role in roles %}
-                    <strong>{{ role.designation.title }}</strong>
                 <li class="list-group-item">
+                    <strong>{{ role.designation.title }}</strong><br>
                     {% if role.department and role.department.name != "Other" %}
-
-                        — Department: {{ role.department.name }}
-                        <br>
+                        Department: {{ role.department.name }}<br>
                     {% endif %}
                     {% if role.office_location %}
-                        — Office: {{ role.office_location }}
-                        <br>
+                        Office: {{ role.office_location }}
                     {% endif %}
                 </li>
             {% endfor %}
@@ -24,14 +22,13 @@
     </div>
 
     {% if person.phone_number %}
-        <p><strong>Phone:</strong> {{ person.phone_number }}</p>
+        <p class="mb-1"><strong>Phone:</strong> {{ person.phone_number }}</p>
     {% endif %}
 
     {% if person.personal_website %}
-        
-            <a href="{{ person.personal_website }}" target="_blank">
-                Website
-            </a>
+        <p class="mb-1">
+            <strong>Website:</strong>
+            <a href="{{ person.personal_website }}" target="_blank" class="link-primary">Visit</a>
         </p>
     {% endif %}
 
@@ -43,14 +40,14 @@
     {% endif %}
 </div>
 
-<div class="card shadow-sm p-4">
-    <h4 class="mb-3">🗺️ Office Navigation</h4>
+<div class="card shadow-sm p-4 mb-4">
+    <h5 class="mb-3">🗺️ Office Navigation</h5>
     {% if map_steps %}
         <ul class="ps-3">
             {% for step in map_steps %}
-                <li class="mb-3">
-                    <p><a href="{{step.map_embed_url}}"><strong>Step {{ step.step_number}}:</strong> </a> {{ step.description }}</p>
-                    
+                <li class="mb-2">
+                    <a href="{{ step.map_embed_url }}" target="_blank"><strong>Step {{ step.step_number }}:</strong></a>
+                    {{ step.description }}
                 </li>
             {% endfor %}
         </ul>
@@ -59,7 +56,5 @@
     {% endif %}
 </div>
 
-<div class="mt-4">
-    <a href="{% url 'faculty_index' %}" class="btn btn-outline-primary">&larr; Back to Faculty Index</a>
-</div>
+<a href="{% url 'faculty_index' %}" class="btn btn-outline-primary mt-3">&larr; Back to Faculty Index</a>
 {% endblock %}

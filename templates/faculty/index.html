@@ -1,49 +1,70 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1 class="mb-4 text-center">Faculty Section</h1>
+<style>
+  .faculty-header {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 2rem;
+  }
+
+  .card-hover:hover {
+    transform: scale(1.03);
+    transition: 0.3s ease;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .card-title {
+    font-weight: 600;
+    color: #34495e;
+  }
+
+  .card-text {
+    color: #7f8c8d;
+  }
+
+  .section-label {
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: #2980b9;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #2980b9;
+    display: inline-block;
+  }
+</style>
+
+<h1 class="faculty-header text-center">🎓 Faculty Section</h1>
 
 <div class="row mb-5">
-  <div class="col-md-4">
-    <!-- Directors and Deans combined -->
+  <!-- Directors and Deans -->
+  <div class="col-md-4 mb-4">
     <div class="d-flex flex-column gap-3">
       {% for role in directors %}
-        <a href="{% url 'faculty_detail' role.person.slug %}" class="text-decoration-none text-dark">
-          <div class="card shadow-sm">
+        <a href="{% url 'faculty_detail' role.person.slug %}" class="text-decoration-none">
+          <div class="card card-hover shadow-sm border-0">
             <div class="card-body text-center">
-              <h5 class="card-title mb-1">{{ role.person.name }}</h5>
-              <p class="card-text text-muted">{{ role.designation.title }}</p>
+              <h5 class="card-title">{{ role.person.name }}</h5>
+              <p class="card-text">{{ role.designation.title }}</p>
             </div>
           </div>
         </a>
       {% empty %}
         <p>No directors found.</p>
       {% endfor %}
-
-      {% comment %} {% for role in deans %}
-        <a href="{% url 'person_detail' role.person.slug %}" class="text-decoration-none text-dark">
-          <div class="card shadow-sm">
-            <div class="card-body text-center">
-              <h5 class="card-title mb-1">{{ role.person.name }}</h5>
-              <p class="card-text text-muted">{{ role.designation.title }}</p>
-            </div>
-          </div>
-        </a>
-      {% empty %}
-        <p>No deans found.</p>
-      {% endfor %} {% endcomment %}
     </div>
   </div>
+
+  <!-- Departments -->
   <div class="col-md-8">
-    <!-- Departments -->
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
       {% for department in departments %}
         <div class="col">
-          <a href="{% url 'department_detail' department.code %}" class="text-decoration-none text-dark">
-            <div class="card h-100 shadow-sm">
+          <a href="{% url 'department_detail' department.code %}" class="text-decoration-none">
+            <div class="card card-hover h-100 shadow-sm border-0">
               <div class="card-body text-center">
                 <h5 class="card-title">{{ department.code|upper }}</h5>
-                <p class="card-text text-muted">{{ department.name }}</p>
+                <p class="card-text">{{ department.name }}</p>
               </div>
             </div>
           </a>

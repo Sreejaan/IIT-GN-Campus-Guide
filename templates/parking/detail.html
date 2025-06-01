@@ -1,16 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
 <div class="container my-4">
-
   <div class="card shadow-sm">
     <div class="card-body">
-      <h2 class="card-title text-center mb-4">{{ parking.name }}</h2>
+      <h2 class="card-title text-center mb-4 text-primary">{{ parking.name }}</h2>
 
       {% if parking.google_maps_url %}
         <div class="text-center mb-4">
-          <a href="{{ parking.google_maps_url }}" target="_blank" class="btn btn-outline-primary">
+          <a href="{{ parking.google_maps_url }}" target="_blank" class="btn btn-primary">
             🗺️ View on Google Maps
           </a>
         </div>
@@ -19,21 +17,21 @@
       <!-- Description -->
       {% if parking.description %}
         <div class="mb-3">
-          <h5 class="text-muted">📄 Description</h5>
-          <p>{{ parking.description }}</p>
+          <h5 class="text-secondary">📄 Description</h5>
+          <p class="text-muted">{{ parking.description }}</p>
         </div>
       {% endif %}
 
       <!-- Type -->
       <div class="mb-3">
-        <h5 class="text-muted">🚗 Facility Type</h5>
+        <h5 class="text-secondary">🚗 Facility Type</h5>
         <p>{{ parking.get_type_display }}</p>
       </div>
 
       <!-- Location Note -->
       {% if parking.location_note %}
         <div class="mb-3">
-          <h5 class="text-muted">📍 Location</h5>
+          <h5 class="text-secondary">📍 Location</h5>
           <p>{{ parking.location_note }}</p>
         </div>
       {% endif %}
@@ -41,7 +39,7 @@
       <!-- Capacity (optional) -->
       {% if parking.capacity %}
         <div class="mb-3">
-          <h5 class="text-muted">🅿️ Capacity</h5>
+          <h5 class="text-secondary">🅿️ Capacity</h5>
           <p>{{ parking.capacity }}</p>
         </div>
       {% endif %}
@@ -49,7 +47,7 @@
       <!-- Notes (optional) -->
       {% if parking.notes %}
         <div class="mb-3">
-          <h5 class="text-muted">📝 Notes</h5>
+          <h5 class="text-secondary">📝 Notes</h5>
           <p>{{ parking.notes }}</p>
         </div>
       {% endif %}
@@ -58,10 +56,7 @@
       <div class="text-center mt-4">
         <a href="{% url 'parking_index' %}" class="btn btn-secondary">← Back to Parking Areas</a>
       </div>
-
     </div>
   </div>
-
 </div>
-
 {% endblock %}

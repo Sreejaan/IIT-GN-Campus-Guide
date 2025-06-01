@@ -1,46 +1,50 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h1>📍 {{ location.name }}</h1>
+<div class="container my-4">
+  <h2 class="mb-4">📍 {{ location.name }}</h2>
 
-  <p><strong>Building:</strong> {{ location.floor.building.name }}</p>
-  <p><strong>Floor:</strong> {{ location.floor.label }}</p>
-  <p><strong>Type:</strong> {{ location.get_type_display }}</p>
+  <div class="mb-3">
+    <p><strong>Building:</strong> {{ location.floor.building.name }}</p>
+    <p><strong>Floor:</strong> {{ location.floor.label }}</p>
+    <p><strong>Type:</strong> {{ location.get_type_display }}</p>
+  </div>
 
-  <h3>🗺️ Outdoor Directions:</h3>
+  <h4 class="mt-4">🗺️ Outdoor Directions:</h4>
   {% if location.floor.building.google_maps_url %}
     <p>
-      <a href="{{ location.floor.building.google_maps_url }}" target="_blank">
+      <a href="{{ location.floor.building.google_maps_url }}" target="_blank" class="btn btn-outline-primary btn-sm">
         Open Google Maps for {{ location.floor.building.name }}
       </a>
     </p>
   {% else %}
-    <p>No Google Maps link available for this building.</p>
+    <p class="text-muted">No Google Maps link available for this building.</p>
   {% endif %}
 
-  <h3>🏃 Indoor Directions:</h3>
-
+  <h4 class="mt-4">🏃 Indoor Directions:</h4>
   <p>{{ location.direction_note }}</p>
-<p>You can also use - 🗺️ Google Maps Directions:</p>
-  <h5></h5>
 
-    {% if location.google_maps_url %}
+  <h5 class="mt-4">🗺️ Google Maps Directions:</h5>
+  {% if location.google_maps_url %}
     <p>
-        <a href="{{ location.google_maps_url }}" target="_blank">
+      <a href="{{ location.google_maps_url }}" target="_blank" class="btn btn-outline-primary btn-sm">
         📍 View this specific location on Google Maps
-        </a>
+      </a>
     </p>
-    {% elif location.floor.building.google_maps_url %}
+  {% elif location.floor.building.google_maps_url %}
     <p>
-        <a href="{{ location.floor.building.google_maps_url }}" target="_blank">
+      <a href="{{ location.floor.building.google_maps_url }}" target="_blank" class="btn btn-outline-primary btn-sm">
         📍 View {{ location.floor.building.name }} on Google Maps
-        </a>
+      </a>
     </p>
-    {% else %}
-    <p>No map available for this location.</p>
-    {% endif %}
+  {% else %}
+    <p class="text-muted">No map available for this location.</p>
+  {% endif %}
 
-  <p><a href="{% url 'hostel_place_type' building_slug=location.floor.building.slug place_type=location.type %}">
-    🔙 Back to {{ location.get_type_display }}s
-  </a></p>
+  <div class="mt-4">
+    <a href="{% url 'hostel_place_type' building_slug=location.floor.building.slug place_type=location.type %}" class="btn btn-link">
+      🔙 Back to {{ location.get_type_display }}s
+    </a>
+  </div>
+</div>
 {% endblock %}
