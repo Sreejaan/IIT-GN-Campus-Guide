@@ -5,19 +5,21 @@
 
 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
   {% for cat in categories %}
-  <div class="col">
-    <div class="card h-100 shadow-sm">
-      <div class="card-body text-center">
-        <h5 class="card-title">{{ cat.emoji }} {{ cat.title }}</h5>
-        <p class="card-text">{{ cat.description }}</p>
-        {% if cat.url_name %}
-          <a href="{% url cat.url_name %}" class="btn btn-primary">{{ cat.button_value }}</a>
-        {% else %}
-          <a href="#" class="btn btn-primary">{{ cat.button_value }}</a>  <!-- Default link -->
-        {% endif %}
+    {% if cat.title != "Research Park" and cat.title != "Faculty Office" and cat.title != "Adventure" %}
+      <div class="col">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body text-center">
+            <h5 class="card-title">{{ cat.emoji }} {{ cat.title }}</h5>
+            <p class="card-text">{{ cat.description }}</p>
+            {% if cat.url_name %}
+              <a href="{% url cat.url_name %}" class="btn btn-primary">{{ cat.button_value }}</a>
+            {% else %}
+              <a href="#" class="btn btn-primary">{{ cat.button_value }}</a>  <!-- Default link -->
+            {% endif %}
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
+    {% endif %}
   {% endfor %}
 </div>
 

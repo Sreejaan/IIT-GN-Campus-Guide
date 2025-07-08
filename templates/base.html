@@ -13,13 +13,23 @@
             padding-top: 2rem;
             padding-bottom: 2rem;
         }
+        h1 a {
+            text-decoration: none;  /* Removes underline */
+            color: inherit;         /* Keeps original h1 text color */
+        }
+
+        h1 a:hover {
+            text-decoration: none;  /* Keeps it clean on hover too */
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
     <header class="mb-4">
-        <h1 class="text-center">🏫 IIT GN Campus Navigation</h1>
+         <h1 class="text-center">
+            <a href="{% url 'core_index' %}">🏫 IIT GN Campus Navigation</a>
+        </h1>
         <hr>
     </header>
 

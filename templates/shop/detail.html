@@ -6,11 +6,11 @@
 
   <div class="card shadow-sm">
     <div class="card-body">
-      <h2 class="card-title text-center mb-4 text-info">{{ shop.name }}</h2>
+      <h2 class="card-title text-center mb-4 text-secondary-emphasis">{{ shop.name }}</h2>
 
       {% if shop.google_maps_url %}
         <div class="text-center mb-4">
-          <a href="{{ shop.google_maps_url }}" target="_blank" class="btn btn-outline-info">
+          <a href="{{ shop.google_maps_url }}" target="_blank" class="btn btn-outline-dark">
             🗺️ View on Google Maps
           </a>
         </div>
@@ -18,47 +18,46 @@
 
       {% if shop.description %}
         <div class="mb-3">
-          <h5 class="text-muted">🛍️ Description</h5>
+          <h5 class="text-body-secondary">🛍️ Description</h5>
           <p>{{ shop.description }}</p>
         </div>
       {% endif %}
 
       <div class="mb-3">
-        <h5 class="text-muted">🏷️ Type</h5>
+        <h5 class="text-body-secondary">🏷️ Type</h5>
         <p>{{ shop.get_type_display }}</p>
       </div>
 
       {% if shop.location_note %}
         <div class="mb-3">
-          <h5 class="text-muted">📍 Location</h5>
+          <h5 class="text-body-secondary">📍 Location</h5>
           <p>{{ shop.location_note }}</p>
         </div>
       {% endif %}
 
       {% if shop.opening_hours %}
         <div class="mb-3">
-          <h5 class="text-muted">🕒 Opening Hours</h5>
+          <h5 class="text-body-secondary">🕒 Opening Hours</h5>
           <p>{{ shop.opening_hours }}</p>
         </div>
       {% endif %}
 
       {% if shop.owner %}
         <div class="mb-3">
-          <h5 class="text-muted">👤 Shop Owner</h5>
+          <h5 class="text-body-secondary">👤 Shop Owner</h5>
           <p>{{ shop.owner }}</p>
         </div>
       {% endif %}
 
       {% if shop.mobile_number %}
         <div class="mb-3">
-          <h5 class="text-muted">📞 Contact</h5>
+          <h5 class="text-body-secondary">📞 Contact</h5>
           <p>{{ shop.mobile_number }}</p>
         </div>
       {% endif %}
 
-
       <div class="text-center mt-4">
-        <a href="{% url 'shops_index' %}" class="btn btn-secondary">← Back to Shops</a>
+        <a href="{% url 'shops_index' %}" class="btn btn-dark">← Back to Shops</a>
       </div>
 
     </div>

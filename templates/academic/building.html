@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container my-4">
+  <h2 class="text-center mb-3">🏢 {{ building.name }}</h2>
+
+  <div class="text-center mb-4">
+    <a href="{{ building.google_maps_url }}" class="btn btn-outline-primary" target="_blank">
+      📍 Direction to Academic Block
+    </a>
+  </div>
+
+{% endblock %}

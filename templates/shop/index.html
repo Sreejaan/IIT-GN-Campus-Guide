@@ -1,16 +1,16 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2 class="text-center mb-4 text-info">🏪 Shops & Services</h2>
+<h2 class="text-center mb-4 text-secondary-emphasis">🏪 Shops & Services</h2>
 
 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
   {% for shop in shops %}
     <div class="col">
-      <div class="card h-100 shadow-sm border border-info">
+      <div class="card h-100 shadow-sm border border-dark-subtle">
         <div class="card-body">
-          <h5 class="card-title text-info">{{ shop.name }}</h5>
-          <p class="card-text text-muted">{{ shop.location_note|default:"No location note provided." }}</p>
-          <a href="{% url 'shop_detail' shop_slug=shop.slug %}" class="btn btn-outline-info">
+          <h5 class="card-title text-dark">{{ shop.name }}</h5>
+          <p class="card-text text-body-secondary">{{ shop.location_note|default:"No location note provided." }}</p>
+          <a href="{% url 'shop_detail' shop_slug=shop.slug %}" class="btn btn-outline-dark">
             View Details →
           </a>
         </div>

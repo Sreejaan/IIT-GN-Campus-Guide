@@ -10,7 +10,7 @@
     </a>
   </div>
 
-  <h5 class="mb-3">Select what you’re looking for in this hostel:</h5>
+  {% comment %} <h5 class="mb-3">Select what you’re looking for in this hostel:</h5>
 
   {% if types %}
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
@@ -28,10 +28,10 @@
     </div>
   {% else %}
     <p class="text-muted">No place types available in this hostel.</p>
-  {% endif %}
+  {% endif %} {% endcomment %}
 
-  <div class="mt-4">
+  {% comment %} <div class="mt-4">
     <a href="{% url 'hostel_index' %}" class="btn btn-link">🔙 Back to Hostel List</a>
-  </div>
+  </div> {% endcomment %}
 </div>
 {% endblock %}
