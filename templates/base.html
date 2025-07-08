@@ -11,15 +11,23 @@
     <style>
         body {
             padding-top: 2rem;
-            padding-bottom: 2rem;
+            padding-bottom: 4rem;
         }
         h1 a {
-            text-decoration: none;  /* Removes underline */
-            color: inherit;         /* Keeps original h1 text color */
+            text-decoration: none;
+            color: inherit;
         }
-
         h1 a:hover {
-            text-decoration: none;  /* Keeps it clean on hover too */
+            text-decoration: none;
+        }
+        footer {
+            background-color: #f8f9fa;
+            padding: 1.5rem 1rem;
+            border-top: 1px solid #dee2e6;
+            margin-top: 3rem;
+        }
+        .footer-link:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -27,7 +35,7 @@
 
 <div class="container">
     <header class="mb-4">
-         <h1 class="text-center">
+        <h1 class="text-center">
             <a href="{% url 'core_index' %}">🏫 IIT GN Campus Navigation</a>
         </h1>
         <hr>
@@ -36,6 +44,35 @@
     {% block content %}
     {% endblock %}
 </div>
+
+<!-- Footer -->
+<footer class="text-center">
+    <div class="container">
+        <p class="mb-1">Made by <strong>Sreejaan (M.tech CSE 2nd Year)</strong> • IIT Gandhinagar</p>
+        <p class="mb-2">
+            Have questions or suggestions?  
+            <a href="https://forms.gle/nfYMX1LCb4v2nKJu6" target="_blank" class="footer-link">Fill out this form</a>
+        </p>
+        <p class="text-muted small mb-0">
+            Count: <span id="visit-count">...</span>
+        </p>
+    </div>
+</footer>
+
+<!-- Visitor Counter Script -->
+<script>
+    const countKey = "visit_count";
+    let count = localStorage.getItem(countKey);
+
+    if (!count) {
+        count = 1;
+    } else {
+        count = parseInt(count) + 1;
+    }
+
+    localStorage.setItem(countKey, count);
+    document.getElementById("visit-count").innerText = count;
+</script>
 
 </body>
 </html>
