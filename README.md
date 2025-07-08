@@ -48,7 +48,7 @@ Easily choose from categorized facilities and discover locations instantly.
 
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/your-username/iitgn-campus-navigation.git
+   git clone https://github.com/Sreejaan/IIT-GN-Campus-Guide.git
    cd iitgn-campus-navigation
    
    python -m venv env
