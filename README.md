@@ -26,6 +26,10 @@ Easily choose from categorized facilities and discover locations instantly.
 - 💧 **Water Points** – Water coolers across campus  
 
 ---
+## 📸 Screenshots
+<img width="1876" height="910" alt="image" src="https://github.com/user-attachments/assets/776cdf9e-5acd-4ff6-af21-ae68a37efabb" />
+
+---
 
 ## 💻 Tech Stack
 
