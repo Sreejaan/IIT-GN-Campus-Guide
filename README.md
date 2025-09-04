@@ -28,6 +28,8 @@ Easily choose from categorized facilities and discover locations instantly.
 ---
 ## 📸 Screenshots
 <img width="1876" height="910" alt="image" src="https://github.com/user-attachments/assets/776cdf9e-5acd-4ff6-af21-ae68a37efabb" />
+<img width="1486" height="940" alt="image" src="https://github.com/user-attachments/assets/1c91bf47-9ea1-4d03-ae0e-3f9ea5ab4c82" />
+
 
 ---
 
